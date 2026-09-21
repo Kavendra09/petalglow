@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-playfair-val: var(--font-playfair), "Playfair Display", Georgia, serif;
+    --font-jakarta-val: var(--font-jakarta), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-jakarta-val);
+    background-color: #FAF6F2;
+    color: #2C221E;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-playfair-val);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Glassmorphism Classes for Floral Theme */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 14px 40px 0 rgba(180, 80, 104, 0.08), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px -5px rgba(180, 80, 104, 0.07), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 15px 0 rgba(180, 80, 104, 0.05);
+}
+
+.glass-dropdown {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 45px -10px rgba(180, 80, 104, 0.12);
+}
+
+/* Subtle floral petal floating animation */
+@keyframes petal-drift {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-15px) rotate(8deg) scale(1.04);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+}
+
+.petal-drift {
+  animation: petal-drift 8s ease-in-out infinite;
+}
+
+.petal-drift-delayed {
+  animation: petal-drift 10s ease-in-out infinite 3s;
+}
+
+/* Flame flicker glow animation */
+@keyframes flame-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(221, 161, 94, 0.35), 0 0 35px rgba(212, 122, 136, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(221, 161, 94, 0.55), 0 0 45px rgba(212, 122, 136, 0.25);
+  }
+}
+
+.flame-glow {
+  animation: flame-pulse 3s infinite ease-in-out;
+}
+
+/* Custom floral scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF5F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9C3BE;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B25068;
 }
